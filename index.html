@@ -3,378 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIG Odontologia | Agendamento 24h Maringá</title>
-    <!-- Fontes e Ícones -->
+    <title>VIG Odontologia | Agendamento Inteligente</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #0a192f; color: #fff; min-height: 100vh; padding: 20px; display: flex; justify-content: center; }
+        
+        .card { width: 100%; max-width: 700px; background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; border: 1px solid rgba(255,255,255,0.18); }
+        h1 { text-align: center; font-size: 1.8rem; margin-bottom: 20px; color: #fff; }
+        h1 span { color: #d4af37; }
 
-        body {
-            color: #333;
-            background-color: #0a192f;
-            min-height: 100vh;
-        }
+        .section-title { font-size: 1rem; color: #d4af37; margin: 20px 0 10px 0; font-weight: 600; }
+        
+        /* Serviços */
+        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        .service-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); padding: 12px; border-radius: 10px; cursor: pointer; color: #fff; text-align: left; }
+        .service-btn.active { border-color: #25d366; background: rgba(37,211,102,0.2); }
 
-        /* HERO SECTION COM IMAGEM DE FUNDO E OVERLAY */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            background: linear-gradient(rgba(10, 25, 47, 0.82), rgba(10, 25, 47, 0.92)), 
-                        url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
-        }
+        /* Horário e Inputs */
+        .time-inputs { display: flex; gap: 10px; flex-wrap: wrap; }
+        input[type="time"], input[type="text"] { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff; outline: none; font-size: 1rem; }
+        
+        /* Botão Urgência */
+        .urgency-btn { background: #e63946; color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .urgency-btn.active { outline: 3px solid #fff; }
 
-        /* CONTAINER PRINCIPAL PROFISSIONAL COM GLASSMORPHISM */
-        .booking-card {
-            width: 100%;
-            max-width: 850px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            padding: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            color: #fff;
-        }
-
-        .header-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .badge {
-            display: inline-block;
-            background: #e63946;
-            color: #fff;
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 6px 16px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .header-title h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .header-title h1 span {
-            color: #d4af37;
-        }
-
-        .header-title p {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            margin-top: 8px;
-        }
-
-        /* SEÇÃO PASSO A PASSO */
-        .step-section {
-            margin-bottom: 28px;
-        }
-
-        .step-label {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #d4af37;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* PASSO 1: SERVIÇOS FICTÍCIOS */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
-
-        .service-option {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .service-option:hover {
-            border-color: #d4af37;
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .service-option.active {
-            border-color: #25d366;
-            background: rgba(37, 211, 102, 0.15);
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .service-option h4 {
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .service-option p {
-            font-size: 0.8rem;
-            color: #94a3b8;
-        }
-
-        .price-tag {
-            font-size: 0.85rem;
-            color: #d4af37;
-            font-weight: 600;
-        }
-
-        /* PASSO 2: HORÁRIOS FICTÍCIOS */
-        .times-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 10px;
-        }
-
-        .time-chip {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            color: #e2e8f0;
-            transition: all 0.2s ease;
-        }
-
-        .time-chip:hover {
-            border-color: #d4af37;
-            color: #fff;
-        }
-
-        .time-chip.active {
-            background: #25d366;
-            border-color: #25d366;
-            color: #fff;
-            font-weight: 600;
-            box-shadow: 0 0 12px rgba(37, 211, 102, 0.4);
-        }
-
-        /* PASSO 3: NOME OPCIONAL */
-        .input-group input {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.2);
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-        }
-
-        .input-group input:focus {
-            border-color: #25d366;
-        }
-
-        .input-group input::placeholder {
-            color: #94a3b8;
-        }
-
-        /* PASSO 4: RESUMO E BOTÃO DE WHATSAPP */
-        .summary-box {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .summary-details {
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            line-height: 1.6;
-        }
-
-        .btn-whatsapp-submit {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: #25d366;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 16px 24px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
-            text-decoration: none;
-        }
-
-        .btn-whatsapp-submit:hover {
-            background: #1eb954;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5);
-        }
-
-        @media (max-width: 600px) {
-            .booking-card { padding: 24px 18px; }
-            .header-title h1 { font-size: 1.7rem; }
-            .services-grid { grid-template-columns: 1fr; }
-        }
+        /* Resumo e Confirmação */
+        .summary { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #fff; text-decoration: none; padding: 15px; border-radius: 50px; font-weight: 700; margin-top: 15px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="booking-card">
-            
-            <div class="header-title">
-                <span class="badge"><i class="fa-solid fa-clock"></i> Atendimento 24h Maringá</span>
-                <h1>VIG Odontologia</h1>
-                <p>Escolha o serviço, selecione o horário e envie direto para o WhatsApp!</p>
-            </div>
+<div class="card">
+    <h1>VIG Odontologia <br><span>Agendamento Online</span></h1>
 
-            <!-- 1. SERVIÇOS FICTÍCIOS PARA ESCOLHER -->
-            <div class="step-section">
-                <div class="step-label">
-                    <i class="fa-solid fa-tooth"></i> 1. Qual serviço você precisa?
-                </div>
-                <div class="services-grid">
-                    <div class="service-option active" onclick="selectService(this, 'Avaliação & Limpeza Dental')">
-                        <h4>Avaliação & Limpeza <i class="fa-solid fa-circle-check"></i></h4>
-                        <p>Check-up dos dentes e profilaxia completa.</p>
-                        <span class="price-tag">A partir de R$ 150</span>
-                    </div>
+    <!-- 1. SERVIÇO -->
+    <div class="section-title"><i class="fa-solid fa-tooth"></i> 1. Selecione o Serviço:</div>
+    <div class="grid-services">
+        <button class="service-btn active" onclick="setService(this, 'Avaliação & Limpeza')">Avaliação & Limpeza</button>
+        <button class="service-btn" onclick="setService(this, 'Implante Dentário')">Implante Dentário</button>
+        <button class="service-btn" onclick="setService(this, 'Clareamento Dental')">Clareamento</button>
+    </div>
 
-                    <div class="service-option" onclick="selectService(this, 'Urgência / Dor de Dente 24h')">
-                        <h4>Urgência / Dor de Dente <i class="fa-solid fa-kit-medical"></i></h4>
-                        <p>Atendimento emergencial e alívio da dor.</p>
-                        <span class="price-tag">Plantão 24 Horas</span>
-                    </div>
+    <!-- 2. HORÁRIO PERSONALIZADO -->
+    <div class="section-title"><i class="fa-regular fa-clock"></i> 2. Digite ou Escolha o Horário:</div>
+    <div class="time-inputs">
+        <input type="time" id="customTime" value="09:00" onchange="validateTime()">
+    </div>
+    
+    <button class="urgency-btn" onclick="setUrgent()">
+        <i class="fa-solid fa-bolt"></i> Urgência / Plantão 24h (Atendimento Imediato)
+    </button>
 
-                    <div class="service-option" onclick="selectService(this, 'Implantes Dentários')">
-                        <h4>Implantes Dentários <i class="fa-solid fa-gem"></i></h4>
-                        <p>Avaliação técnica para reposição de dentes.</p>
-                        <span class="price-tag">Consulta de Avaliação</span>
-                    </div>
+    <!-- 3. NOME -->
+    <div class="section-title"><i class="fa-solid fa-user"></i> 3. Seu Nome:</div>
+    <input type="text" id="clientName" placeholder="Digite seu nome..." oninput="updateSummary()">
 
-                    <div class="service-option" onclick="selectService(this, 'Clareamento / Estética')">
-                        <h4>Clareamento / Estética <i class="fa-solid fa-wand-magic-sparkles"></i></h4>
-                        <p>Estética, lentes de contato e branqueamento.</p>
-                        <span class="price-tag">A partir de R$ 350</span>
-                    </div>
-                </div>
-            </div>
+    <!-- RESUMO -->
+    <div class="summary" id="summaryBox">
+        Selecione os dados para ver o resumo.
+    </div>
 
-            <!-- 2. HORÁRIOS FICTÍCIOS PARA ESCOLHER -->
-            <div class="step-section">
-                <div class="step-label">
-                    <i class="fa-regular fa-calendar-check"></i> 2. Qual o melhor horário para você?
-                </div>
-                <div class="times-grid">
-                    <div class="time-chip active" onclick="selectTime(this, '08:30')">08:30</div>
-                    <div class="time-chip" onclick="selectTime(this, '10:00')">10:00</div>
-                    <div class="time-chip" onclick="selectTime(this, '14:00')">14:00</div>
-                    <div class="time-chip" onclick="selectTime(this, '16:30')">16:30</div>
-                    <div class="time-chip" onclick="selectTime(this, '19:00')">19:00</div>
-                    <div class="time-chip" onclick="selectTime(this, 'Agora / Emergência 24h')">Urgente 24h</div>
-                </div>
-            </div>
+    <a href="#" id="waBtn" target="_blank" class="btn-whatsapp" onclick="confirmBooking()">
+        <i class="fa-brands fa-whatsapp"></i> Confirmar Agendamento no WhatsApp
+    </a>
+</div>
 
-            <!-- 3. NOME FICTÍCIO / OPCIONAL -->
-            <div class="step-section">
-                <div class="step-label">
-                    <i class="fa-solid fa-user"></i> 3. Seu Nome (Opcional)
-                </div>
-                <div class="input-group">
-                    <input type="text" id="patientName" placeholder="Digite seu nome..." oninput="updateSummary()">
-                </div>
-            </div>
+<script>
+    let service = "Avaliação & Limpeza";
+    let isUrgent = false;
+    const phone = "554499862487";
 
-            <!-- 4. BOTÃO COM A MENSAGEM PRONTA PRO WHATSAPP -->
-            <div class="summary-box">
-                <div class="summary-details" id="summaryText">
-                    <strong>Resumo da solicitação:</strong><br>
-                    • Serviço: Avaliação & Limpeza Dental<br>
-                    • Horário: 08:30<br>
-                    • Telefone destino: (44) 9986-2487
-                </div>
+    // Simula banco de dados local com horários ocupados
+    let bookedTimes = JSON.parse(localStorage.getItem('vigo_booked')) || ["10:00", "14:30"];
 
-                <a id="whatsappBtn" href="#" target="_blank" class="btn-whatsapp-submit">
-                    <i class="fa-brands fa-whatsapp"></i> Enviar Agendamento no WhatsApp
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SCRIPT DE INTERAÇÃO -->
-    <script>
-        let selectedService = "Avaliação & Limpeza Dental";
-        let selectedTime = "08:30";
-        const phoneNumber = "554499862487";
-
-        function selectService(element, serviceName) {
-            document.querySelectorAll('.service-option').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-            selectedService = serviceName;
-            updateSummary();
-        }
-
-        function selectTime(element, timeValue) {
-            document.querySelectorAll('.time-chip').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-            selectedTime = timeValue;
-            updateSummary();
-        }
-
-        function updateSummary() {
-            const nameInput = document.getElementById('patientName').value.trim();
-            const nameText = nameInput ? nameInput : "Cliente em potencial";
-
-            document.getElementById('summaryText').innerHTML = `
-                <strong>Resumo da solicitação:</strong><br>
-                • <strong>Serviço:</strong> ${selectedService}<br>
-                • <strong>Horário:</strong> ${selectedTime}<br>
-                • <strong>Nome:</strong> ${nameText}
-            `;
-
-            let textMessage = `Olá! Vim pelo site da VIG Odontologia e gostaria de agendar uma consulta:%0A%0A` +
-                              `🦷 *Serviço:* ${selectedService}%0A` +
-                              `⏰ *Horário desejado:* ${selectedTime}%0A` +
-                              `👤 *Nome:* ${nameText}`;
-
-            document.getElementById('whatsappBtn').href = `https://wa.me/${phoneNumber}?text=${textMessage}`;
-        }
-
+    function setService(el, name) {
+        document.querySelectorAll('.service-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        service = name;
         updateSummary();
-    </script>
+    }
+
+    function setUrgent() {
+        isUrgent = !isUrgent;
+        const btn = document.querySelector('.urgency-btn');
+        if(isUrgent) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+        updateSummary();
+    }
+
+    function validateTime() {
+        isUrgent = false;
+        document.querySelector('.urgency-btn').classList.remove('active');
+        const selected = document.getElementById('customTime').value;
+
+        if (bookedTimes.includes(selected)) {
+            alert(`O horário ${selected} já está reservado por outro paciente! Por favor, escolha outro horário mais para a frente.`);
+            document.getElementById('customTime').value = "";
+        }
+        updateSummary();
+    }
+
+    function updateSummary() {
+        const timeVal = isUrgent ? "EMERGÊNCIA 24H (Imediato)" : (document.getElementById('customTime').value || "Não selecionado");
+        const nameVal = document.getElementById('clientName').value || "Não informado";
+
+        document.getElementById('summaryBox').innerHTML = `
+            <strong>Resumo:</strong><br>
+            • <strong>Serviço:</strong> ${service}<br>
+            • <strong>Horário:</strong> ${timeVal}<br>
+            • <strong>Paciente:</strong> ${nameVal}
+        `;
+
+        const msg = `Olá! Gostaria de agendar:%0A- *Serviço:* ${service}%0A- *Horário:* ${timeVal}%0A- *Nome:* ${nameVal}`;
+        document.getElementById('waBtn').href = `https://wa.me/${phone}?text=${msg}`;
+    }
+
+    function confirmBooking() {
+        const timeVal = document.getElementById('customTime').value;
+        if (!isUrgent && timeVal) {
+            // Salva o horário no histórico para bloquear futuros agendamentos
+            bookedTimes.push(timeVal);
+            localStorage.setItem('vigo_booked', JSON.stringify(bookedTimes));
+        }
+    }
+
+    updateSummary();
+</script>
 
 </body>
 </html>
