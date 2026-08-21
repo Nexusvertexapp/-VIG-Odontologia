@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIG Odontologia | Dentista 24h Maringá</title>
+    <!-- Ícones e Fontes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* HERO SECTION - IMAGEM DE FUNDO COM OVERLAY PROFISSIONAL */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff;
+            /* Subsitua 'imagem-de-fundo.jpg' pelo nome do seu arquivo de imagem */
+            background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.85)), url('imagem-de-fundo.jpg') center/cover no-repeat fixed;
+            padding: 20px;
+        }
+
+        /* CAIXA DE CONTEÚDO COM EFEITO VIDRO (GLASSMORPHISM) */
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            padding: 40px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #e63946;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.4);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .hero h1 span {
+            color: #d4af37; /* Tom dourado refinado */
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* BOTÃO WHATSAPP PRINCIPAL */
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #25d366;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1eb954;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .btn-whatsapp i {
+            font-size: 1.6rem;
+        }
+
+        /* SEÇÃO DE DIFERENCIAIS */
+        .features {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #0a192f;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #0a192f;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* BOTÃO FLUTUANTE DE CANTO DA TELA */
+        .float-whatsapp {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .float-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* RESPONSIVIDADE PARA CELULARES */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .btn-whatsapp {
+                font-size: 1rem;
+                padding: 14px 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO / HERO SECTION COM A IMAGEM DE FUNDO -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge"><i class="fa-solid fa-clock"></i> Atendimento 24 Horas</span>
+            <h1>VIG Odontologia <br><span>Dentista 24h Maringá</span></h1>
+            <p>Mais que técnica, é sobre cuidado, confiança e devolver sorrisos com precisão e tecnologia avançada!</p>
+            
+            <a href="https://wa.me/554499862487?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20VIG%20Odontologia." class="btn-whatsapp" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Agendar pelo WhatsApp: (44) 9986-2487
+            </a>
+        </div>
+    </section>
+
+    <!-- CARDÚNCULOS E DIFERENCIAIS DA CLÍNICA -->
+    <section class="features">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; color: #0a192f; margin-bottom: 10px;">Por que escolher a VIG Odontologia?</h2>
+            <p style="color: #666;">Estrutura moderna para implantes e urgências odontológicas 24 horas em Maringá.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-tooth"></i>
+                <h3>Implantes & Sorrisos</h3>
+                <p>Tecnologia que transforma e devolve o seu sorriso completo com máxima precisão e durabilidade.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h3>Plantão 24h</h3>
+                <p>Pronto atendimento para dores e emergências odontológicas a qualquer hora do dia ou da noite.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-gem"></i>
+                <h3>Precisão & Cuidado</h3>
+                <p>Atendimento humanizado focado no conforto, segurança e na sua qualidade de vida.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTAO FLUTUANTE FIXO NO CANTO DA TELA -->
+    <a href="https://wa.me/554499862487?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20odontol%C3%B3gico." class="float-whatsapp" target="_blank" title="Fale pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
