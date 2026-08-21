@@ -1,154 +1,48 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIG Odontologia | Agendamento</title>
+    <title>VIG Odontologia | Agendamento Inteligente</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #0a192f; color: #fff; min-height: 100vh; padding: 20px; display: flex; justify-content: center; align-items: center; }
+        body { background-color: #0a192f; color: #fff; min-height: 100vh; padding: 20px; display: flex; justify-content: center; }
         
-        .card { width: 100%; max-width: 600px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 20px; padding: 25px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
-        h1 { text-align: center; font-size: 1.8rem; margin-bottom: 25px; color: #fff; }
+        .card { width: 100%; max-width: 700px; background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; border: 1px solid rgba(255,255,255,0.18); }
+        h1 { text-align: center; font-size: 1.8rem; margin-bottom: 20px; color: #fff; }
         h1 span { color: #d4af37; }
 
-        .section-title { font-size: 0.95rem; color: #d4af37; margin: 18px 0 8px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-title { font-size: 1rem; color: #d4af37; margin: 20px 0 10px 0; font-weight: 600; }
         
-        /* Grid de Serviços do Penúltimo Script */
-        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
-        .service-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); padding: 14px 10px; border-radius: 12px; cursor: pointer; color: #fff; text-align: center; font-size: 0.9rem; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .service-btn i { font-size: 1.2rem; color: #d4af37; }
-        .service-btn.active { border-color: #25d366; background: rgba(37,211,102,0.15); color: #fff; }
+        /* Serviços */
+        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        .service-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); padding: 12px; border-radius: 10px; cursor: pointer; color: #fff; text-align: left; }
+        .service-btn.active { border-color: #25d366; background: rgba(37,211,102,0.2); }
 
-        /* Input de Horário para Teclado Livre */
-        .input-box { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff; outline: none; font-size: 1rem; }
-        .input-box::placeholder { color: rgba(255,255,255,0.4); }
+        /* Horário e Inputs */
+        .time-inputs { display: flex; gap: 10px; flex-wrap: wrap; }
+        input[type="time"], input[type="text"] { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff; outline: none; font-size: 1rem; }
+        
+        /* Botão Urgência */
+        .urgency-btn { background: #e63946; color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .urgency-btn.active { outline: 3px solid #fff; }
 
-        /* Botão Plantão 24h Fixo */
-        .urgency-btn { background: #e63946; color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem; transition: 0.2s; }
-        .urgency-btn.active { outline: 2px solid #fff; background: #c52a36; }
-
-        /* Resumo e Botão WhatsApp Fiel ao Penúltimo */
-        .summary { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 0.9rem; border-left: 4px solid #25d366; line-height: 1.6; }
-        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #fff; text-decoration: none; padding: 16px; border-radius: 50px; font-weight: 700; margin-top: 20px; text-align: center; font-size: 1rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3); transition: 0.3s; }
-        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
+        /* Resumo e Confirmação */
+        .summary { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #fff; text-decoration: none; padding: 15px; border-radius: 50px; font-weight: 700; margin-top: 15px; text-align: center; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>VIG Odontologia <br><span>Agendamento Rápido</span></h1>
-
-    <!-- SERVIÇOS (LAYOUT DO PENÚLTIMO SCRIPT) -->
-    <div class="section-title"><i class="fa-solid fa-tooth"></i> Selecione o Serviço:</div>
-    <div class="grid-services">
-        <button class="service-btn active" onclick="setService(this, 'Avaliação Geral')">
-            <i class="fa-solid fa-stethoscope"></i>
-            <span>Avaliação Geral</span>
-        </button>
-        <button class="service-btn" onclick="setService(this, 'Limpeza / Tartaroto')">
-            <i class="fa-solid fa-teeth"></i>
-            <span>Limpeza Dentária</span>
-        </button>
-        <button class="service-btn" onclick="setService(this, 'Implante Dentário')">
-            <i class="fa-solid fa-tooth"></i>
-            <span>Implantes</span>
-        </button>
-        <button class="service-btn" onclick="setService(this, 'Clareamento Dental')">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>Clareamento</span>
-        </button>
-    </div>
-
-    <!-- DIGITAR HORÁRIO COM TECLADO DO CELULAR -->
-    <div class="section-title"><i class="fa-regular fa-clock"></i> Digite o Horário Desejado:</div>
-    <input type="text" id="customTime" class="input-box" placeholder="Ex: 14:30, 09:00 ou Manhã" oninput="validateAndSaveTime()">
-
-    <!-- URGÊNCIA 24H -->
-    <button class="urgency-btn" onclick="toggleUrgent()">
-        <i class="fa-solid fa-bolt"></i> Agendimento Urgente / Plantão 24h
-    </button>
-
-    <!-- NOME DO PACIENTE -->
-    <div class="section-title"><i class="fa-solid fa-user"></i> Seu Nome Completo:</div>
-    <input type="text" id="clientName" class="input-box" placeholder="Digite seu nome..." oninput="updateSummary()">
-
-    <!-- RESUMO -->
-    <div class="summary" id="summaryBox">
-        Preencha os dados acima para gerar a confirmação.
-    </div>
-
-    <!-- BOTÃO WHATSAPP COM MENSAGEM DO PENÚLTIMO SCRIPT -->
-    <a href="#" id="waBtn" target="_blank" class="btn-whatsapp" onclick="confirmBooking()">
-        <i class="fa-brands fa-whatsapp"></i> Agendar pelo WhatsApp
-    </a>
-</div>
-
-<script>
-    let service = "Avaliação Geral";
-    let isUrgent = false;
-    const phone = "554499862487";
-
-    // Pega horários já agendados de outros usuários
-    let bookedTimes = JSON.parse(localStorage.getItem('vigo_booked')) || [];
-
-    function setService(el, name) {
-        document.querySelectorAll('.service-btn').forEach(b => b.classList.remove('active'));
-        el.classList.add('active');
-        service = name;
-        updateSummary();
-    }
-
-    function toggleUrgent() {
-        isUrgent = !isUrgent;
-        const btn = document.querySelector('.urgency-btn');
-        if (isUrgent) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-        updateSummary();
-    }
-
-    function validateAndSaveTime() {
-        if(isUrgent) {
-            isUrgent = false;
-            document.querySelector('.urgency-btn').classList.remove('active');
-        }
-        
-        const typedTime = document.getElementById('customTime').value.trim().toLowerCase();
-
-        // Checa se o horário digitado já foi agendado anteriormente
-        if (typedTime !== "" && bookedTimes.includes(typedTime)) {
-            alert(`Atenção: O horário "${typedTime}" já consta como agendado em nosso sistema! Por favor, digite um horário diferente ou mais para frente.`);
-        }
-
-        updateSummary();
-    }
-
-    function updateSummary() {
-        const timeInput = document.getElementById('customTime').value;
-        const nameInput = document.getElementById('clientName').value || "Não informado";
-        
-        const displayTime = isUrgent ? "URGÊNCIA / PLANTÃO 24H" : (timeInput || "A definir");
-
-        // Atualiza a tela
-        document.getElementById('summaryBox').innerHTML = `
-            <strong>Resumo do Agendamento:</strong><br>
-            • <strong>Serviço:</strong> ${service}<br>
-            • <strong>Horário:</strong> ${displayTime}<br>
-            • <strong>Nome:</strong> ${nameInput}
-        `;
-
-        // Modelo exato da mensagem no WhatsApp do penúltimo script
+   // Modelo exato da mensagem no WhatsApp do penúltimo script
         const messageText = `Olá! Gostaria de fazer um agendamento na VIG Odontologia:%0A%0A` +
                             `📌 *Serviço:* ${service}%0A` +
                             `⏰ *Horário:* ${displayTime}%0A` +
                             `👤 *Nome:* ${nameInput}%0A%0A` +
-                            `Aguardos a confirmação da equipe!`;
+                            `Aguardo: a confirmação da equipe!`;
 
         document.getElementById('waBtn').href = `https://wa.me/${phone}?text=${messageText}`;
     }
