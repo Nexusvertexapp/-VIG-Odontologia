@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -37,12 +37,95 @@
 </head>
 <body>
 
-   // Modelo exato da mensagem no WhatsApp do penúltimo script
+<div class="card">
+    <h1>VIG Odontologia <br><span>Agendamento Online</span></h1>
+
+    <!-- 1. SERVIÇO -->
+    <div class="section-title"><i class="fa-solid fa-tooth"></i> 1. Selecione o Serviço:</div>
+    <div class="grid-services">
+        <button class="service-btn active" onclick="setService(this, 'Avaliação & Limpeza')">Avaliação & Limpeza</button>
+        <button class="service-btn" onclick="setService(this, 'Implante Dentário')">Implante Dentário</button>
+        <button class="service-btn" onclick="setService(this, 'Clareamento Dental')">Clareamento</button>
+    </div>
+
+    <!-- 2. HORÁRIO PERSONALIZADO -->
+    <div class="section-title"><i class="fa-regular fa-clock"></i> 2. Digite ou Escolha o Horário:</div>
+    <div class="time-inputs">
+        <input type="time" id="customTime" value="09:00" onchange="validateTime()">
+    </div>
+    
+    <button class="urgency-btn" onclick="setUrgent()">
+        <i class="fa-solid fa-bolt"></i> Urgência / Plantão 24h (Atendimento Imediato)
+    </button>
+
+    <!-- 3. NOME -->
+    <div class="section-title"><i class="fa-solid fa-user"></i> 3. Seu Nome:</div>
+    <input type="text" id="clientName" placeholder="Digite seu nome..." oninput="updateSummary()">
+
+    <!-- RESUMO -->
+    <div class="summary" id="summaryBox">
+        Selecione os dados para ver o resumo.
+    </div>
+
+    <a href="#" id="waBtn" target="_blank" class="btn-whatsapp" onclick="confirmBooking()">
+        <i class="fa-brands fa-whatsapp"></i> Confirmar Agendamento no WhatsApp
+    </a>
+</div>
+
+<script>
+    let service = "Avaliação & Limpeza";
+    let isUrgent = false;
+    const phone = "554499862487";
+
+    // Simula banco de dados local com horários ocupados
+    let bookedTimes = JSON.parse(localStorage.getItem('vigo_booked')) || ["10:00", "14:30"];
+
+    function setService(el, name) {
+        document.querySelectorAll('.service-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        service = name;
+        updateSummary();
+    }
+
+    function setUrgent() {
+        isUrgent = !isUrgent;
+        const btn = document.querySelector('.urgency-btn');
+        if(isUrgent) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+        updateSummary();
+    }
+
+    function validateTime() {
+        isUrgent = false;
+        document.querySelector('.urgency-btn').classList.remove('active');
+        const selected = document.getElementById('customTime').value;
+
+        if (bookedTimes.includes(selected)) {
+            alert(`O horário ${selected} já está reservado por outro paciente! Por favor, escolha outro horário mais para a frente.`);
+            document.getElementById('customTime').value = "";
+        }
+        updateSummary();
+    }
+
+    function updateSummary() {
+        const timeVal = isUrgent ? "EMERGÊNCIA 24H (Imediato)" : (document.getElementById('customTime').value || "Não selecionado");
+        const nameVal = document.getElementById('clientName').value || "Não informado";
+
+        document.getElementById('summaryBox').innerHTML = `
+            <strong>Resumo:</strong><br>
+            • <strong>Serviço:</strong> ${service}<br>
+            • <strong>Horário:</strong> ${timeVal}<br>
+            • <strong>Paciente:</strong> ${nameVal}
+
+// Modelo exato da mensagem no WhatsApp do penúltimo script
         const messageText = `Olá! Gostaria de fazer um agendamento na VIG Odontologia:%0A%0A` +
                             `📌 *Serviço:* ${service}%0A` +
                             `⏰ *Horário:* ${displayTime}%0A` +
                             `👤 *Nome:* ${nameInput}%0A%0A` +
-                            `Aguardo: a confirmação da equipe!`;
+                            `Aguardos a confirmação da equipe!`;
 
         document.getElementById('waBtn').href = `https://wa.me/${phone}?text=${messageText}`;
     }
