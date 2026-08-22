@@ -9,10 +9,48 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #0a192f; color: #fff; min-height: 100vh; padding: 20px; display: flex; justify-content: center; align-items: center; }
         
-        .card { width: 100%; max-width: 600px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 20px; padding: 25px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
-        h1 { text-align: center; font-size: 1.8rem; margin-bottom: 25px; color: #fff; }
+        /* Fundo com Imagem de Consultório e Camada Escura */
+        body { 
+            background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.95)), 
+                        url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff; 
+            min-height: 100vh; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        
+        .card { 
+            width: 100%; 
+            max-width: 600px; 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px; 
+            padding: 25px; 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
+        }
+
+        /* Banner de Imagem / Logo no Topo */
+        .header-banner {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-banner img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        h1 { text-align: center; font-size: 1.8rem; margin-bottom: 20px; color: #fff; }
         h1 span { color: #d4af37; }
 
         .section-title { font-size: 0.95rem; color: #d4af37; margin: 18px 0 8px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -23,8 +61,8 @@
         .service-btn i { font-size: 1.2rem; color: #d4af37; }
         .service-btn.active { border-color: #25d366; background: rgba(37,211,102,0.15); color: #fff; }
 
-        /* Input de Horário */
-        .input-box { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff; outline: none; font-size: 1rem; }
+        /* Input para Digitação do Horário */
+        .input-box { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.4); color: #fff; outline: none; font-size: 1rem; }
         .input-box::placeholder { color: rgba(255,255,255,0.4); }
 
         /* Botão Plantão 24h */
@@ -32,21 +70,19 @@
         .urgency-btn.active { outline: 2px solid #fff; background: #c52a36; }
 
         /* Resumo e Botão WhatsApp */
-        .summary { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 0.9rem; border-left: 4px solid #25d366; line-height: 1.6; }
+        .summary { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 0.9rem; border-left: 4px solid #25d366; line-height: 1.6; }
         .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #fff; text-decoration: none; padding: 16px; border-radius: 50px; font-weight: 700; margin-top: 20px; text-align: center; font-size: 1rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3); transition: 0.3s; }
         .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
-
-        /* Sessão Adicionada: Horários e Localização */
-        .info-footer { margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .hours-list { font-size: 0.85rem; line-height: 1.6; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
-        .location-info { font-size: 0.85rem; color: #fff; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
-        .location-info i { color: #e63946; font-size: 1rem; margin-top: 2px; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h1>VIG Odontologia <br><span>Agendamento Rápido</span></h1>
+    <!-- IMAGEM DA LOGO / DENTISTA -->
+    <div class="header-banner">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=300&auto=format&fit=crop" alt="VIG Odontologia">
+        <h1>VIG Odontologia <br><span>Agendamento Rápido</span></h1>
+    </div>
 
     <!-- SERVIÇOS -->
     <div class="section-title"><i class="fa-solid fa-tooth"></i> Selecione o Serviço:</div>
@@ -91,25 +127,6 @@
     <a href="#" id="waBtn" target="_blank" class="btn-whatsapp" onclick="confirmBooking()">
         <i class="fa-brands fa-whatsapp"></i> Agendar pelo WhatsApp
     </a>
-
-    <!-- SEÇÃO ADICIONADA: HORÁRIOS E LOCALIZAÇÃO -->
-    <div class="info-footer">
-        <div class="section-title"><i class="fa-regular fa-calendar-days"></i> Horário de Atendimento:</div>
-        <div class="hours-list">
-            • Aberta agora: Somente com hora marcada<br>
-            • Domingo: Somente com hora marcada<br>
-            • Segunda-feira: Somente com hora marcada<br>
-            • Terça-feira: Somente com hora marcada<br>
-            • Quarta-feira: Somente com hora marcada<br>
-            • Quinta-feira: Somente com hora marcada<br>
-            • Sexta-feira: Somente com hora marcada
-        </div>
-
-        <div class="location-info">
-            <i class="fa-solid fa-location-dot"></i>
-            <span>Av. Américo Belay, 885 - Jardim Imperial II, Maringá - PR, 87023-000</span>
-        </div>
-    </div>
 </div>
 
 <script>
