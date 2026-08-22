@@ -9,81 +9,46 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #0a192f; color: #fff; min-height: 100vh; padding: 20px; display: flex; justify-content: center; align-items: center; }
         
-        body { 
-            background: linear-gradient(rgba(10, 25, 47, 0.90), rgba(10, 25, 47, 0.95)), 
-                        url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff; 
-            min-height: 100vh; 
-            padding: 20px 10px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-        }
-        
-        .card { 
-            width: 100%; 
-            max-width: 600px; 
-            background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px; 
-            padding: 25px; 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
-        }
-
-        .header-banner { text-align: center; margin-bottom: 20px; }
-        .header-banner img {
-            width: 90px; height: 90px; object-fit: cover; border-radius: 50%;
-            border: 2px solid #d4af37; box-shadow: 0 4px 10px rgba(0,0,0,0.3); margin-bottom: 10px;
-        }
-
-        h1 { text-align: center; font-size: 1.8rem; margin-bottom: 5px; color: #fff; }
+        .card { width: 100%; max-width: 600px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 20px; padding: 25px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        h1 { text-align: center; font-size: 1.8rem; margin-bottom: 25px; color: #fff; }
         h1 span { color: #d4af37; }
 
-        .section-title { font-size: 0.9rem; color: #d4af37; margin: 18px 0 8px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-title { font-size: 0.95rem; color: #d4af37; margin: 18px 0 8px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         
         /* Grid de Serviços */
-        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
-        .service-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); padding: 12px 8px; border-radius: 12px; cursor: pointer; color: #fff; text-align: center; font-size: 0.85rem; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+        .service-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); padding: 14px 10px; border-radius: 12px; cursor: pointer; color: #fff; text-align: center; font-size: 0.9rem; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .service-btn i { font-size: 1.2rem; color: #d4af37; }
         .service-btn.active { border-color: #25d366; background: rgba(37,211,102,0.15); color: #fff; }
 
-        /* Input de Horário com Botão Reset */
-        .input-group { display: flex; gap: 8px; }
-        .input-box { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.4); color: #fff; outline: none; font-size: 0.95rem; }
+        /* Input de Horário */
+        .input-box { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff; outline: none; font-size: 1rem; }
         .input-box::placeholder { color: rgba(255,255,255,0.4); }
-        .btn-reset { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #aaa; padding: 0 12px; border-radius: 10px; cursor: pointer; font-size: 0.8rem; white-space: nowrap; transition: 0.2s; }
-        .btn-reset:hover { background: rgba(255,255,255,0.2); color: #fff; }
 
-        /* Plantão 24h */
+        /* Botão Plantão 24h */
         .urgency-btn { background: #e63946; color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem; transition: 0.2s; }
         .urgency-btn.active { outline: 2px solid #fff; background: #c52a36; }
 
-        /* Resumo e Ação */
-        .summary { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 0.9rem; border-left: 4px solid #25d366; line-height: 1.6; }
-        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #fff; text-decoration: none; padding: 16px; border-radius: 50px; font-weight: 700; margin-top: 15px; text-align: center; font-size: 1rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3); transition: 0.3s; }
+        /* Resumo e Botão WhatsApp */
+        .summary { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 0.9rem; border-left: 4px solid #25d366; line-height: 1.6; }
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #fff; text-decoration: none; padding: 16px; border-radius: 50px; font-weight: 700; margin-top: 20px; text-align: center; font-size: 1rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3); transition: 0.3s; }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
 
-        /* Informações Locais e Horários */
-        .info-footer { margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: rgba(255,255,255,0.8); }
-        .info-box { background: rgba(0,0,0,0.25); padding: 12px 15px; border-radius: 10px; margin-top: 10px; }
-        .info-box p { margin-bottom: 4px; display: flex; justify-content: space-between; }
-        .info-box p strong { color: #d4af37; }
-        .location-text { display: flex; align-items: flex-start; gap: 8px; margin-top: 12px; font-size: 0.85rem; line-height: 1.4; color: #e0e0e0; }
-        .location-text i { color: #e63946; font-size: 1.1rem; margin-top: 2px; }
+        /* Sessão Adicionada: Horários e Localização */
+        .info-footer { margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .hours-list { font-size: 0.85rem; line-height: 1.6; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
+        .location-info { font-size: 0.85rem; color: #fff; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+        .location-info i { color: #e63946; font-size: 1rem; margin-top: 2px; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <div class="header-banner">
-        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=300&auto=format&fit=crop" alt="VIG Odontologia">
-        <h1>VIG Odontologia <br><span>Agendamento Rápido</span></h1>
-    </div>
+    <h1>VIG Odontologia <br><span>Agendamento Rápido</span></h1>
 
-    <!-- 1. SERVIÇOS -->
+    <!-- SERVIÇOS -->
     <div class="section-title"><i class="fa-solid fa-tooth"></i> Selecione o Serviço:</div>
     <div class="grid-services">
         <button class="service-btn active" onclick="setService(this, 'Avaliação Geral')">
@@ -104,19 +69,16 @@
         </button>
     </div>
 
-    <!-- 2. DIGITAR HORÁRIO -->
+    <!-- DIGITAR HORÁRIO -->
     <div class="section-title"><i class="fa-regular fa-clock"></i> Digite o Horário Desejado:</div>
-    <div class="input-group">
-        <input type="text" id="customTime" class="input-box" placeholder="Ex: 14:30, 09:00 ou Manhã" oninput="validateAndSaveTime()">
-        <button class="btn-reset" onclick="clearBookings()" title="Limpa o bloqueio de horários no navegador">Liberar Horários</button>
-    </div>
+    <input type="text" id="customTime" class="input-box" placeholder="Ex: 14:30, 09:00 ou Manhã" oninput="validateAndSaveTime()">
 
     <!-- URGÊNCIA 24H -->
     <button class="urgency-btn" onclick="toggleUrgent()">
         <i class="fa-solid fa-bolt"></i> Agendamento Urgente / Plantão 24h
     </button>
 
-    <!-- 3. NOME -->
+    <!-- NOME DO PACIENTE -->
     <div class="section-title"><i class="fa-solid fa-user"></i> Seu Nome Completo:</div>
     <input type="text" id="clientName" class="input-box" placeholder="Digite seu nome..." oninput="updateSummary()">
 
@@ -130,20 +92,20 @@
         <i class="fa-brands fa-whatsapp"></i> Agendar pelo WhatsApp
     </a>
 
-    <!-- INFORMAÇÕES DE HORÁRIO E LOCALIZAÇÃO -->
+    <!-- SEÇÃO ADICIONADA: HORÁRIOS E LOCALIZAÇÃO -->
     <div class="info-footer">
-        <div class="section-title" style="margin-top:0;"><i class="fa-regular fa-calendar-check"></i> Horário de Atendimento:</div>
-        <div class="info-box">
-            <p><span>Domingo:</span> <strong>Somente com hora marcada</strong></p>
-            <p><span>Segunda-feira:</span> <strong>Somente com hora marcada</strong></p>
-            <p><span>Terça-feira:</span> <strong>Somente com hora marcada</strong></p>
-            <p><span>Quarta-feira:</span> <strong>Somente com hora marcada</strong></p>
-            <p><span>Quinta-feira:</span> <strong>Somente com hora marcada</strong></p>
-            <p><span>Sexta-feira:</span> <strong>Somente com hora marcada</strong></p>
-            <p><span>Sábado:</span> <strong>Somente com hora marcada</strong></p>
+        <div class="section-title"><i class="fa-regular fa-calendar-days"></i> Horário de Atendimento:</div>
+        <div class="hours-list">
+            • Aberta agora: Somente com hora marcada<br>
+            • Domingo: Somente com hora marcada<br>
+            • Segunda-feira: Somente com hora marcada<br>
+            • Terça-feira: Somente com hora marcada<br>
+            • Quarta-feira: Somente com hora marcada<br>
+            • Quinta-feira: Somente com hora marcada<br>
+            • Sexta-feira: Somente com hora marcada
         </div>
 
-        <div class="location-text">
+        <div class="location-info">
             <i class="fa-solid fa-location-dot"></i>
             <span>Av. Américo Belay, 885 - Jardim Imperial II, Maringá - PR, 87023-000</span>
         </div>
@@ -155,17 +117,7 @@
     let isUrgent = false;
     const phone = "554499862487";
 
-    // Pega os agendamentos salvos com timestamp
-    function getStoredBookings() {
-        const stored = JSON.parse(localStorage.getItem('vigo_booked_list')) || [];
-        const now = new Date().getTime();
-        
-        // Mantém salvos apenas agendamentos com menos de 2 horas (7200000 ms) para liberar horários velhos
-        const validBookings = stored.filter(item => (now - item.timestamp) < 7200000);
-        localStorage.setItem('vigo_booked_list', JSON.stringify(validBookings));
-        
-        return validBookings.map(item => item.time);
-    }
+    let bookedTimes = JSON.parse(localStorage.getItem('vigo_booked')) || [];
 
     function setService(el, name) {
         document.querySelectorAll('.service-btn').forEach(b => b.classList.remove('active'));
@@ -177,7 +129,11 @@
     function toggleUrgent() {
         isUrgent = !isUrgent;
         const btn = document.querySelector('.urgency-btn');
-        btn.classList.toggle('active', isUrgent);
+        if (isUrgent) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
         updateSummary();
     }
 
@@ -188,10 +144,9 @@
         }
         
         const typedTime = document.getElementById('customTime').value.trim().toLowerCase();
-        const activeBookings = getStoredBookings();
 
-        if (typedTime !== "" && activeBookings.includes(typedTime)) {
-            alert(`Atenção: O horário "${typedTime}" já está temporariamente ocupado por outro paciente! Por favor, informe outro horário.`);
+        if (typedTime !== "" && bookedTimes.includes(typedTime)) {
+            alert(`Atenção: O horário "${typedTime}" já consta como agendado em nosso sistema! Por favor, digite um horário diferente ou mais para frente.`);
         }
 
         updateSummary();
@@ -222,18 +177,9 @@
     function confirmBooking() {
         const timeVal = document.getElementById('customTime').value.trim().toLowerCase();
         if (!isUrgent && timeVal !== "") {
-            const stored = JSON.parse(localStorage.getItem('vigo_booked_list')) || [];
-            stored.push({ time: timeVal, timestamp: new Date().getTime() });
-            localStorage.setItem('vigo_booked_list', JSON.stringify(stored));
+            bookedTimes.push(timeVal);
+            localStorage.setItem('vigo_booked', JSON.stringify(bookedTimes));
         }
-    }
-
-    // Função manual para resetar o teste de bloqueio
-    function clearBookings() {
-        localStorage.removeItem('vigo_booked_list');
-        document.getElementById('customTime').value = "";
-        alert("Lista de horários bloqueados foi resetada com sucesso!");
-        updateSummary();
     }
 
     updateSummary();
