@@ -1,4 +1,4 @@
-         <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -142,11 +142,13 @@
             • <strong>Horário:</strong> ${displayTime}<br>
             • <strong>Nome:</strong> ${nameInput}
         `;
-       const messageText = `Olá! Gostaria de fazer um agendamento na VIG Odontologia:%0A%0A` +
+
+        // Modelo exato da mensagem no WhatsApp do penúltimo script
+        const messageText = `Olá! Gostaria de fazer um agendamento na VIG Odontologia:%0A%0A` +
                             `📌 *Serviço:* ${service}%0A` +
                             `⏰ *Horário:* ${displayTime}%0A` +
                             `👤 *Nome:* ${nameInput}%0A%0A` +
-                            `Aguardo:* a confirmação da equipe!`;
+                            `Aguardos a confirmação da equipe!`;
 
         document.getElementById('waBtn').href = `https://wa.me/${phone}?text=${messageText}`;
     }
@@ -154,6 +156,7 @@
     function confirmBooking() {
         const timeVal = document.getElementById('customTime').value.trim().toLowerCase();
         if (!isUrgent && timeVal !== "") {
+            // Salva o horário no banco/armazenamento local para que outros não possam usar o mesmo
             bookedTimes.push(timeVal);
             localStorage.setItem('vigo_booked', JSON.stringify(bookedTimes));
         }
